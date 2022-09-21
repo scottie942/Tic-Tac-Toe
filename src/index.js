@@ -10,7 +10,6 @@ import './index.css';
       );
   }
 
-
   class Board extends React.Component {
     renderSquare(i) {
       return (
@@ -60,9 +59,11 @@ import './index.css';
         const history = this.state.history.slice(0, this.state.stepNumber + 1);
         const current = history[history.length - 1];
         const squares = current.squares.slice();
+
         if (calculateWinner(squares) || squares[i]){
             return;
         }
+
         squares[i] = this.state.xIsNext ? "X" : "O";
         this.setState({
             history: history.concat([{
@@ -96,14 +97,12 @@ import './index.css';
             );
         });
 
-
         let status;
         if (winner){
             status = "Winner: " + winner; 
         } else {
             status = "Next player: " + (this.state.xIsNext ? "X" : "O");
         }
-
 
       return (
         <div className="game">
@@ -121,8 +120,6 @@ import './index.css';
       );
     }
   }
-
-  // ========================================
   
   const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(<Game />);
@@ -141,7 +138,7 @@ import './index.css';
       for (let i = 0; i < lines.length; i++){
           const [a, b, c] = lines[i];
           if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
-              return squares[a]
+              return squares[a];
           }
       }
       return null; 
